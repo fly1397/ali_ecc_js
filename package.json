@@ -4,6 +4,7 @@
   "description": "",
   "main": "ali.js",
   "scripts": {
+    "start": "node ali.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "fly1397@sina.com",

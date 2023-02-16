@@ -10,7 +10,7 @@ const userData = {
 	publicKey: "",
 	signatureData: "",
     drive_id:"6xxxx93", // DevTools -> Application -> Local Storage -> cna
-    authorization: "Bearer xxxxxxxxxx"  // Request Headers -> authorization
+    authorization: ""  // Request Headers -> authorization   Bearer xxxxxxxxxx
 }
 
 const headers = { 
@@ -59,7 +59,7 @@ const DownloadFile = (file_id) => {
         headers: {...headers},
     });
 }
-const  InitAliKey = async () => {
+const  InitAliKey = () => {
     const {appId, deviceId, userId, nonce} = userData;
 	const max = 32;
 	const privKey = randomString(max);
@@ -82,7 +82,10 @@ const  InitAliKey = async () => {
 
 const main = async () => {
     InitAliKey();
-    if(!userData.publicKey || !headers['x-signature'] || !userData.authorization) return;
+    if(!userData.publicKey || !headers['x-signature'] || !userData.authorization) {
+        console.log('need set the userdata');
+        return
+    }
     const session = await CreateSession();
     console.log(session.data) // { result: true, success: true, code: null, message: null }
     // file_id
